@@ -15,19 +15,37 @@ public class DataHandler {
             BufferedReader reader = new BufferedReader(new FileReader("students.txt"));
             String line;
             
+            String firstName = null;
+            String lastName = null;
+            String studentID = null;
+            int numClasses = 0;
+            
             // Loop until there are no more lines to read in the file
             while ((line = reader.readLine()) != null) {
-                //Read first and Last names
-                String[] nameParts = line.split(" ");
-                String firstName = nameParts[0];
-                String lastName = nameParts[1];
+                
+                //Read first and Last names and validate
+                if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
+                    String[] splitname = line.split(" ");
+                }
+                else System.out.println("Name invalid");
                 
                 // Read the number of classes
-                int numClasses = Integer.parseInt(reader.readLine());
+                line = reader.readLine();
+                if (line.matches("^[1-8]$")){
+                    numClasses = Integer.parseInt(line);
+                } else System.out.println("Invalid Number of Classes");
                 
                 // Read student ID
-                String studentID = reader.readLine();
                 
+                // Regex pattern validating studentID starts with a two digit number higher then 20
+                //Then matches two more letters
+                //Then matches zero or more alphanumeric Characters
+                //Then matches one or two numeric characters, ensuring the number is between 1 and 99.
+                String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
+                line = reader.readLine();
+                if (line.matches(idPattern)){
+                    studentID = line;
+                } else System.out.println("Inavlid Student ID");
                 // Create new student Object
                 Student newStudent = new Student(firstName, lastName, studentID, numClasses);
             }
@@ -35,4 +53,5 @@ public class DataHandler {
             e.printStackTrace();
         }
     }
+    
 }
