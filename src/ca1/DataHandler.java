@@ -9,6 +9,7 @@ import java.io.IOException;
  * @author Mateus Manhani
  */
 public class DataHandler {
+    
     public static void readStudents(){
         // Use try & catch to try to read the file
         try{
@@ -37,10 +38,10 @@ public class DataHandler {
                 
                 // Read student ID
                 
-                // Regex pattern validating studentID starts with a two digit number higher then 20
-                //Then matches two more letters
-                //Then matches zero or more alphanumeric Characters
-                //Then matches one or two numeric characters, ensuring the number is between 1 and 99.
+                /* Regex pattern validating studentID starts with a two digit number higher then 20
+                Then matches two more letters
+                Then matches zero or more alphanumeric Characters
+                Then matches one or two numeric characters, ensuring the number is between 1 and 99.*/
                 String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
                 line = reader.readLine();
                 if (line.matches(idPattern)){
