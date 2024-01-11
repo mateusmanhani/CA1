@@ -26,7 +26,10 @@ public class DataHandler {
                 
                 //Read first and Last names and validate
                 if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
-                    String[] splitname = line.split(" ");
+                    String[] splitName = line.split(" ");
+                    // assign first and last name to the corresponding variable
+                    firstName = splitName[0];
+                    lastName = splitName[1];
                 }
                 else System.out.println("Name invalid");
                 
@@ -49,6 +52,8 @@ public class DataHandler {
                 } else System.out.println("Inavlid Student ID");
                 // Create new student Object
                 Student newStudent = new Student(firstName, lastName, studentID, numClasses);
+                // Add newStudent to student Repository
+                StudentRepository.addStudent(newStudent);
             }
         }catch(IOException e){
             e.printStackTrace();
