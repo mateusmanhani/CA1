@@ -1,7 +1,9 @@
 package ca1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -56,6 +58,27 @@ public class DataHandler {
                 StudentRepository.addStudent(newStudent);
             }
         }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public static void writeStudents(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("status.txt"))){
+            //Iterate through students in studentRepository
+            for (Student student : StudentRepository.getStudents()){
+                //Write Student ID and last Name to first line
+                writer.write(student.getStudentID()+ " - " + student.getLastName());
+                writer.newLine();
+                
+                // Write workload
+                writer.write(student.getWorkload());
+                writer.newLine();
+                
+                // Write a blank line to separate entries
+                writer.newLine();
+            }
+        } catch (Exception e){
+            System.out.println("Unable to write to file.");
             e.printStackTrace();
         }
     }
