@@ -25,6 +25,7 @@ public class DataHandler {
             
             // Loop until there are no more lines to read in the file
             while ((line = reader.readLine()) != null) {
+                // Skip Blank Lines
                 if (line.trim().isEmpty()) continue;
                 //Read first and Last names and validate
                 if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
