@@ -10,7 +10,7 @@ part time
 22XYZ456 - Smith
 full time
 
-22XYZ456 - Johnson
+invalid - Johnson
 part time
 
 20GHI0123 - Williams
@@ -20,7 +20,7 @@ full time
 light
 
 20MNO789 - Brown
-light
+full time
 
 21PQR012 - Taylor
 full time
@@ -31,8 +31,8 @@ part time
 22VWX678 - Miller
 part time
 
-22VWX678 - Clark
-part time
+invalid - Clark
+full time
 
 23BCD456 - White
 light
@@ -55,7 +55,7 @@ full time
 21TUV345 - Turner
 full time
 
-21TUV345 - King
+invalid - King
 very light
 
 26ABC0123 - Moore

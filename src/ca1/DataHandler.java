@@ -28,31 +28,18 @@ public class DataHandler {
                 // Skip Blank Lines
                 if (line.trim().isEmpty()) continue;
                 //Read first and Last names and validate
-                if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
-                    String[] splitName = line.split(" ");
-                    // assign first and last name to the corresponding variable
-                    firstName = splitName[0];
-                    lastName = splitName[1];
-                }
-                else System.out.println("Name invalid");
+                String[] studentName = verifyName(line);
+                firstName = studentName[0];
+                lastName = studentName[1];
+
                 
                 // Read the number of classes
                 line = reader.readLine();
-                if (line.matches("^[1-8]$")){
-                    numClasses = Integer.parseInt(line);
-                } else System.out.println("Invalid Number of Classes");
-                
+                numClasses = verifyClasses(line);
                 // Read student ID
-                
-                /* Regex pattern validating studentID starts with a two digit number higher then 20
-                Then matches two more letters
-                Then matches zero or more alphanumeric Characters
-                Then matches one or two numeric characters, ensuring the number is between 1 and 99.*/
-                String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
                 line = reader.readLine();
-                if (line.matches(idPattern)){
-                    studentID = line;
-                } else System.out.println("Inavlid Student ID");
+                studentID = verifyID(line);
+
                 // Create new student Object
                 Student newStudent = new Student(firstName, lastName, studentID, numClasses);
                 // Add newStudent to student Repository
@@ -82,6 +69,43 @@ public class DataHandler {
             System.out.println("Unable to write to file.");
             e.printStackTrace();
         }
+    }
+    
+    public static String[] verifyName(String line){
+        String[] result = new String[2];
+        if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
+            String[] splitName = line.split(" ");
+            // assign first and last name to the corresponding index
+            result[0] = splitName[0];
+            result[1] = splitName[1];
+        }
+        else System.out.println("Name invalid");
+        
+        return result;
+    }
+    public static int verifyClasses(String line){
+        // Validate the number of classes
+        int result = 0;
+        if (line.matches("^[1-8]$")){
+            result = Integer.parseInt(line);
+        } else System.out.println("Invalid Number of Classes");
+        
+        return result;
+    }
+    
+    public static String verifyID(String line){
+        String result = "invalid";
+        /* Regex pattern validating studentID starts with a two digit number higher then 20
+        Then matches two more letters
+        Then matches zero or more alphanumeric Characters
+        Then matches one or two numeric characters, ensuring the number is between 1 and 99.*/
+        
+         // Validate student ID
+        String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
+        if (line.matches(idPattern)){
+            result = line;
+        } else System.out.println("Inavlid Student ID");
+        return result;
     }
     
 }
