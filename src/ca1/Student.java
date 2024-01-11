@@ -7,7 +7,7 @@ package ca1;
 public class Student {
     public String firstName;
     public String lastName;
-    public String workLoad;
+    public String workload;
     public String studentID;
     public int numClasses;
     
@@ -16,6 +16,31 @@ public class Student {
         this.lastName = lastName;
         this.studentID = studentID;
         this.numClasses = numClasses;
-        this.workLoad = null;
+        this.workload = null;
+    }
+    // Getter methods
+    public String getFirstName(){
+        return firstName;
+    }
+    
+    public String getLastName(){
+        return lastName;
+    }
+    
+    public String getStudentID(){
+        return studentID;
+    }
+    
+    public int getNumClasses(){
+        return numClasses;
+    }
+    
+    //Setter for workload    
+    public void setWorkload(int numClasses){
+        if (numClasses < 1) System.out.println("This student has no workload.");
+        if (numClasses == 1) this.workload = "very light";
+        else if(numClasses == 2) this.workload = "light";
+        else if(numClasses >= 3 && numClasses <= 5) this.workload = "part time";
+        else this.workload = "full time";
     }
 }
