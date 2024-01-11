@@ -7,7 +7,7 @@ import java.util.List;
  * @author Mateus Manhani
  */
 public class StudentRepository {
-    public static List<Student> studentsList = new ArrayList<Student>();
+    public static List<Student> studentsList = new ArrayList<>();
     
     public static void addStudent(Student newStudent){
         studentsList.add(newStudent);
