@@ -1,3 +1,81 @@
 Sam Weiss
 5
 22DIP1123
+Mateus Cucco
+6
+23DASD134
+John Doe
+4
+21ABC123
+
+Jane Smith
+7
+22XYZ456
+
+Alice Johnson
+3
+19DEF789
+
+Bob Williams
+8
+20GHI0123
+
+Eva Thompson
+2
+22JKL456
+
+Charlie Brown
+9
+20MNO789
+
+Lily Taylor
+6
+21PQR012
+
+Mike Davis
+5
+20STU345
+
+Sophie Miller
+3
+22VWX678
+
+Tom Clark
+10
+19YZA123
+
+Sarah White
+2
+23BCD456
+
+James Robinson
+7
+20EFG789
+
+Amanda Lee
+4
+24HIJ0123
+
+Alex Martin
+5
+22KLM345
+
+Emily Wilson
+3
+20NOP678
+
+Michael Harris
+8
+25QRS012
+
+Grace Turner
+6
+21TUV345
+
+Brandon King
+1
+19XYZ678
+
+Olivia Moore
+7
+26ABC0123
