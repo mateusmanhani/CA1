@@ -9,14 +9,12 @@ public class Student {
     public String lastName;
     public String workload;
     public String studentID;
-    public int numClasses;
     
     public Student(String firstName, String lastName, String studentID, int numClasses){
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentID = studentID;
-        this.numClasses = numClasses;
-        this.workload = null;
+        setWorkload(numClasses); 
     }
     // Getter methods
     public String getFirstName(){
@@ -31,11 +29,11 @@ public class Student {
         return studentID;
     }
     
-    public int getNumClasses(){
-        return numClasses;
+    public String getWorkload(){
+        return workload;
     }
     
-    //Setter for workload    
+    //Setter for workload according to the number of classes   
     public void setWorkload(int numClasses){
         if (numClasses < 1) System.out.println("This student has no workload.");
         if (numClasses == 1) this.workload = "very light";
