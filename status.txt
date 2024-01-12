@@ -1,3 +1,51 @@
-22EEA213 - manhani
+22DIP1123 - Weiss
 part time
+
+23DASD134 - Cucco
+full time
+
+21ABC123 - Doe
+part time
+
+22XYZ456 - Smith
+full time
+
+20GHI0123 - Williams
+full time
+
+22JKL456 - Thompson
+light
+
+21PQR012 - Taylor
+full time
+
+20STU345 - Davis
+part time
+
+22VWX678 - Miller
+part time
+
+23BCD456 - White
+light
+
+20EFG789 - Robinson
+full time
+
+24HIJ0123 - Lee
+part time
+
+22KLM345 - Martin
+part time
+
+20NOP678 - Wilson
+part time
+
+25QRS012 - Harris
+full time
+
+21TUV345 - Turner
+full time
+
+26ABC0123 - Moore
+full time
 
