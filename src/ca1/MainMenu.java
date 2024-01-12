@@ -47,48 +47,70 @@ public class MainMenu {
         }
     }
     
-    private static void takeUserInput(Scanner sc){
-        //Declare nescessary variables
-        String input = null;
+    public static void takeUserInput(Scanner sc) {
+        while (true) {
+            String[] studentName = getValidName(sc); 
+            String firstName = studentName[0];
+            String lastName = studentName[1];
+            int numClasses = getValidNumClasses(sc);
+            String studentID = getValidStudentID(sc);
+
+            // If all validation passes, create and add new Student
+            Student newStudent = new Student(firstName, null, studentID, numClasses);
+            StudentRepository.addStudent(newStudent);
+
+            // Ask the user if they want to add another student
+            if (!askForAnotherStudent(sc)) {
+                break; // Exit the loop if not "yes"
+            }
+        }
+    }
         
-        //Variables for instatiating Student
-        String firstName = null;
-        String lastName = null;
-        String studentID = null;
-        int numClasses = 0;
-        
+    private static String[] getValidName (Scanner sc){    
+        //Take input for fisrt and last name
         while (true){
-            //Take input for fisrt and last name
-            System.out.println("Please enter your first and last name separated by one single space:");
-            input = sc.nextLine();
-            
             try{
-                //Validate input and save to variables
-                String[] splitName = DataHandler.verifyName(input);
-                firstName = splitName[0];
-                lastName = splitName[1];
-                
-                //Validate and save input for Number of classes
-                System.out.println("Please enter the number of classes 1 through 8:");
-                numClasses = DataHandler.verifyClasses(sc.nextLine());
-                
-                // Validate and save student ID
-                System.out.println("Please enter the student ID: ");
-                studentID = DataHandler.verifyID(sc.nextLine());
-                
-                // If all validation passes, create and add new Student
-                Student newStudent = new Student(firstName, lastName, studentID, numClasses);
-                StudentRepository.addStudent(newStudent);
-                
-                // Ask user  if he wants to add another student
-                System.out.println("Would you like to add another student? (yes/no): ");
-                String addAnother = sc.nextLine().toLowerCase();
-                
-                if (!addAnother.equals("yes")) break; // exit loop if not yes
+                System.out.println("Please enter your first and last name separated by one single space:");
+                String input = sc.nextLine();
+                return DataHandler.verifyName(input);               
             } catch(Exception e){
                 System.out.println("Invalid Input. Please try again.");
-            }  
+            }
         }
-
     }
+        
+    private static int getValidNumClasses(Scanner sc){
+        // Take input for number of classes
+        while (true) {
+            try{
+                System.out.println("Please enter the number of classes (1 through 8):");
+                return DataHandler.verifyClasses(sc.nextLine());
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please Try again.");
+            }      
+        }
+    }
+    private static String getValidStudentID(Scanner sc){
+        // Take input for student ID
+        while (true) {
+            try{
+                System.out.println("Please enter the student ID: ");
+                return DataHandler.verifyID(sc.nextLine()); 
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please Try again.");
+            }
+        }
+    }
+             
+      
 }
+
+
+//                
+//                // Ask user  if he wants to add another student
+//                System.out.println("Would you like to add another student? (yes/no): ");
+//                String addAnother = sc.nextLine().toLowerCase();
+//                
+//                if (!addAnother.equals("yes")) break; // exit loop if not yes
+    
+
