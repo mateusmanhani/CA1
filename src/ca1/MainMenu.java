@@ -24,7 +24,7 @@ public class MainMenu {
 
             try{
                 choice = Integer.parseInt(input);
-            }catch(Exception e){
+            }catch(NumberFormatException e){
                 System.out.println("Not an Integer");
             }
             
@@ -72,7 +72,7 @@ public class MainMenu {
                 System.out.println("Please enter your first and last name separated by one single space:");
                 String input = sc.nextLine();
                 return DataHandler.verifyName(input);               
-            } catch(Exception e){
+            } catch(DataHandler.ValidationException e){
                 System.out.println("Invalid Input. Please try again.");
             }
         }
@@ -83,7 +83,7 @@ public class MainMenu {
             try{
                 System.out.println("Please enter the number of classes (1 through 8):");
                 return DataHandler.verifyClasses(sc.nextLine());
-            } catch (Exception e) {
+            } catch (DataHandler.ValidationException e) {
                 System.out.println("Invalid input. Please Try again.");
             }      
         }
@@ -94,7 +94,7 @@ public class MainMenu {
             try{
                 System.out.println("Please enter the student ID: ");
                 return DataHandler.verifyID(sc.nextLine()); 
-            } catch (Exception e) {
+            } catch (DataHandler.ValidationException e) {
                 System.out.println("Invalid input. Please Try again.");
             }
         }

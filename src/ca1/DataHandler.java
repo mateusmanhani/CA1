@@ -90,7 +90,6 @@ public class DataHandler {
             }
         } catch (Exception e){
             System.out.println("Unable to write to file.");
-            e.printStackTrace();
         }
     }
     
