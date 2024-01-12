@@ -11,6 +11,13 @@ import java.io.IOException;
  * @author Mateus Manhani
  */
 public class DataHandler {
+    // Regular expression patterns for student ID validation
+    private static final String START_PATTERN = "^[2-9][0-9]";
+    private static final String ALPHA_TWO_PATTERN = "[A-Za-z]{2}";
+    private static final String OPTIONAL_ALPHA_DIGIT_PATTERN = "[A-Za-z]?[0-9]+";
+    private static final String NUMBER_RANGE_PATTERN = "([1-9][0-9]?|1[0-9]{2})";
+    private static final String FULL_PATTERN = START_PATTERN + ALPHA_TWO_PATTERN + OPTIONAL_ALPHA_DIGIT_PATTERN + NUMBER_RANGE_PATTERN + "$";
+
     
     public static void readStudents() throws Exception{
         // Use try & catch to try to read the file
@@ -103,14 +110,8 @@ public class DataHandler {
     
     public static String verifyID(String line) throws ValidationException{
         String result = "invalid";
-        /* Regex pattern validating studentID starts with a two digit number higher then 20
-        Then matches two more letters
-        Then matches zero or more alphanumeric Characters
-        Then matches one or two numeric characters, ensuring the number is between 1 and 99.*/
-        
          // Validate student ID
-        String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
-        if (line.matches(idPattern)){
+        if (line.matches(FULL_PATTERN)){
             result = line;
         } else throw new ValidationException("Invalid student ID.");
         return result;
@@ -122,6 +123,6 @@ public class DataHandler {
         public ValidationException(String message) {
             super(message);
         }
-}
+    }
     
 }
