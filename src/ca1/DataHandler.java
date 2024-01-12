@@ -12,11 +12,17 @@ import java.io.IOException;
  */
 public class DataHandler {
     // Regular expression patterns for student ID validation
-    private static final String START_PATTERN = "^[2-9][0-9]";
-    private static final String ALPHA_TWO_PATTERN = "[A-Za-z]{2}";
-    private static final String OPTIONAL_ALPHA_DIGIT_PATTERN = "[A-Za-z]?[0-9]+";
-    private static final String NUMBER_RANGE_PATTERN = "([1-9][0-9]?|1[0-9]{2})";
-    private static final String FULL_PATTERN = START_PATTERN + ALPHA_TWO_PATTERN + OPTIONAL_ALPHA_DIGIT_PATTERN + NUMBER_RANGE_PATTERN + "$";
+    private static final String TWO_NUMBERS = "^[2-9][0-9]";
+    private static final String TWO_LETTERS = "[A-Za-z]{2}";
+    private static final String LETTER_NUMBER = "[A-Za-z]?[0-9]+";
+    private static final String UP_TWO_HUNDRED = "([1-9][0-9]?|1[0-9]{2})";
+    private static final String ID_PATTERN = TWO_NUMBERS + TWO_LETTERS + LETTER_NUMBER + UP_TWO_HUNDRED + "$";
+    
+    // Regular expression for name validation
+    private static final String NAME_PATTERN = "^[a-zA-Z]+ [a-zA-Z0-9]+$";
+    
+    //Regular expression for number of classes
+    private static final String CLASSES_PATTERN = "^[1-8]$";
 
     
     public static void readStudents() throws Exception{
@@ -90,7 +96,7 @@ public class DataHandler {
     
     public static String[] verifyName(String line) throws ValidationException{
         String[] result = new String[2];
-        if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
+        if (line.matches(NAME_PATTERN)){
             String[] splitName = line.split(" ");
             // assign first and last name to the corresponding index
             result[0] = splitName[0];
@@ -102,7 +108,7 @@ public class DataHandler {
     public static int verifyClasses(String line) throws ValidationException{
         // Validate the number of classes
         int result = 0;
-        if (line.matches("^[1-8]$")){
+        if (line.matches(CLASSES_PATTERN)){
             result = Integer.parseInt(line);
         } else throw new ValidationException("Inavlid number of classes");
         return result;
@@ -111,7 +117,7 @@ public class DataHandler {
     public static String verifyID(String line) throws ValidationException{
         String result = "invalid";
          // Validate student ID
-        if (line.matches(FULL_PATTERN)){
+        if (line.matches(ID_PATTERN)){
             result = line;
         } else throw new ValidationException("Invalid student ID.");
         return result;
