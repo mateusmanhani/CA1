@@ -56,7 +56,7 @@ public class MainMenu {
             String studentID = getValidStudentID(sc);
 
             // If all validation passes, create and add new Student
-            Student newStudent = new Student(firstName, null, studentID, numClasses);
+            Student newStudent = new Student(firstName, lastName, studentID, numClasses);
             StudentRepository.addStudent(newStudent);
 
             // Ask the user if they want to add another student
@@ -64,8 +64,7 @@ public class MainMenu {
                 break; // Exit the loop if not "yes"
             }
         }
-    }
-        
+    }   
     private static String[] getValidName (Scanner sc){    
         //Take input for fisrt and last name
         while (true){
@@ -78,7 +77,6 @@ public class MainMenu {
             }
         }
     }
-        
     private static int getValidNumClasses(Scanner sc){
         // Take input for number of classes
         while (true) {
@@ -101,16 +99,9 @@ public class MainMenu {
             }
         }
     }
-             
-      
+    private static boolean askForAnotherStudent (Scanner sc){
+        System.out.println("Would you like to add another student? (yes/no): ");
+        String addAnother = sc.nextLine().toLowerCase();
+        return addAnother.equals("yes");
+    }
 }
-
-
-//                
-//                // Ask user  if he wants to add another student
-//                System.out.println("Would you like to add another student? (yes/no): ");
-//                String addAnother = sc.nextLine().toLowerCase();
-//                
-//                if (!addAnother.equals("yes")) break; // exit loop if not yes
-    
-

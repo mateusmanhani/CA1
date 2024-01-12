@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class DataHandler {
     
-    public static void readStudents(){
+    public static void readStudents() throws Exception{
         // Use try & catch to try to read the file
         try{
             BufferedReader reader = new BufferedReader(new FileReader("students.txt"));
@@ -71,7 +71,7 @@ public class DataHandler {
         }
     }
     
-    public static String[] verifyName(String line){
+    public static String[] verifyName(String line) throws Exception{
         String[] result = new String[2];
         if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
             String[] splitName = line.split(" ");
@@ -79,21 +79,19 @@ public class DataHandler {
             result[0] = splitName[0];
             result[1] = splitName[1];
         }
-        else System.out.println("Name invalid");
-        
+        else throw new Exception("Name inavlid.");
         return result;
     }
-    public static int verifyClasses(String line){
+    public static int verifyClasses(String line) throws Exception{
         // Validate the number of classes
         int result = 0;
         if (line.matches("^[1-8]$")){
             result = Integer.parseInt(line);
-        } else System.out.println("Invalid Number of Classes");
-        
+        } else throw new Exception("Inavlid number of classes");
         return result;
     }
     
-    public static String verifyID(String line){
+    public static String verifyID(String line) throws Exception{
         String result = "invalid";
         /* Regex pattern validating studentID starts with a two digit number higher then 20
         Then matches two more letters
@@ -104,7 +102,7 @@ public class DataHandler {
         String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
         if (line.matches(idPattern)){
             result = line;
-        } else System.out.println("Inavlid Student ID");
+        } else throw new Exception("Invalid student ID.");
         return result;
     }
     
