@@ -1,63 +1,6 @@
-22DIP1123 - Weiss
+23DASD134 - Manhani
 part time
-
-23DASD134 - Cucco
-full time
-
-21ABC123 - Doe
-part time
-
-22XYZ456 - Smith
-full time
-
-invalid - Johnson
-part time
-
-20GHI0123 - Williams
-full time
-
-22JKL456 - Thompson
-light
-
-20MNO789 - Brown
-full time
-
-21PQR012 - Taylor
-full time
-
-20STU345 - Davis
-part time
-
-22VWX678 - Miller
-part time
-
-invalid - Clark
-full time
-
-23BCD456 - White
-light
-
-20EFG789 - Robinson
-full time
-
-24HIJ0123 - Lee
-part time
-
-22KLM345 - Martin
-part time
-
-20NOP678 - Wilson
-part time
-
-25QRS012 - Harris
-full time
-
-21TUV345 - Turner
-full time
 
 invalid - King
-very light
-
-26ABC0123 - Moore
 full time
 

@@ -21,8 +21,6 @@ public class MainMenu {
             Scanner sc = new Scanner(System.in);
             int choice = 0;
             String input = sc.nextLine();
-            
-            sc.close(); //close scanner
 
             try{
                 choice = Integer.parseInt(input);
@@ -34,18 +32,22 @@ public class MainMenu {
                 case 1:
                     // Read data from local file
                     DataHandler.readStudents();
+                    DataHandler.writeStudents();
                     exit = true;
                     break;
                 case 2:
                     //Read data from user Input
-                    
+                    takeUserInput(sc);
+                    DataHandler.writeStudents();
+                    exit = true;
+                    break;
                 default:
                     System.out.println("Invalid choice.");
             } 
         }
     }
     
-    public static void takeUserInput(){
+    private static void takeUserInput(Scanner sc){
         //Declare nescessary variables
         String input = null;
         
@@ -54,8 +56,6 @@ public class MainMenu {
         String lastName = null;
         String studentID = null;
         int numClasses = 0;
-        
-        Scanner sc = new Scanner(System.in);
         
         while (true){
             //Take input for fisrt and last name
