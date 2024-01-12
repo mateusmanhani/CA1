@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author Mateus Manhani
  */
 public class MainMenu {
-    public static void showMenu(){
+    public static void showMenu() throws Exception{
         
         boolean exit = false;
         

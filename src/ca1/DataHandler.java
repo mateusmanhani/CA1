@@ -27,23 +27,33 @@ public class DataHandler {
             while ((line = reader.readLine()) != null) {
                 // Skip Blank Lines
                 if (line.trim().isEmpty()) continue;
-                //Read first and Last names and validate
-                String[] studentName = verifyName(line);
-                firstName = studentName[0];
-                lastName = studentName[1];
-
                 
-                // Read the number of classes
-                line = reader.readLine();
-                numClasses = verifyClasses(line);
-                // Read student ID
-                line = reader.readLine();
-                studentID = verifyID(line);
+                // Log the current line for debugging
+                System.out.println("Processing line: " + line);
 
-                // Create new student Object
-                Student newStudent = new Student(firstName, lastName, studentID, numClasses);
-                // Add newStudent to student Repository
-                StudentRepository.addStudent(newStudent);
+                try {
+                    // Read first and Last names and validate
+                    String[] studentName = verifyName(line);
+                    firstName = studentName[0];
+                    lastName = studentName[1];
+
+                    // Read the number of classes
+                    line = reader.readLine();
+                    numClasses = verifyClasses(line);
+
+                    // Read student ID
+                    line = reader.readLine();
+                    studentID = verifyID(line);
+
+                    // Create new student Object
+                    Student newStudent = new Student(firstName, lastName, studentID, numClasses);
+                    // Add newStudent to student Repository
+                    StudentRepository.addStudent(newStudent);
+
+                } catch (ValidationException e) {
+                    // Handle the exception for file reading (print error message and skip)
+                    System.out.println("Error processing line: " + line + ". " + e.getMessage());
+                }
             }
         }catch(IOException e){
             e.printStackTrace();
@@ -71,7 +81,7 @@ public class DataHandler {
         }
     }
     
-    public static String[] verifyName(String line) throws Exception{
+    public static String[] verifyName(String line) throws ValidationException{
         String[] result = new String[2];
         if (line.matches("^[a-zA-Z]+ [a-zA-Z0-9]+$")){
             String[] splitName = line.split(" ");
@@ -79,19 +89,19 @@ public class DataHandler {
             result[0] = splitName[0];
             result[1] = splitName[1];
         }
-        else throw new Exception("Name inavlid.");
+        else throw new ValidationException("Name inavlid.");
         return result;
     }
-    public static int verifyClasses(String line) throws Exception{
+    public static int verifyClasses(String line) throws ValidationException{
         // Validate the number of classes
         int result = 0;
         if (line.matches("^[1-8]$")){
             result = Integer.parseInt(line);
-        } else throw new Exception("Inavlid number of classes");
+        } else throw new ValidationException("Inavlid number of classes");
         return result;
     }
     
-    public static String verifyID(String line) throws Exception{
+    public static String verifyID(String line) throws ValidationException{
         String result = "invalid";
         /* Regex pattern validating studentID starts with a two digit number higher then 20
         Then matches two more letters
@@ -102,8 +112,16 @@ public class DataHandler {
         String idPattern = "^[2-9][0-9][A-Za-z]{2}[A-Za-z0-9]*[1-9][0-9]?$"; 
         if (line.matches(idPattern)){
             result = line;
-        } else throw new Exception("Invalid student ID.");
+        } else throw new ValidationException("Invalid student ID.");
         return result;
     }
+    
+    // Create class to extend exception error in order to catch it to handle differently while reading from file and when readin user input
+    public static class ValidationException extends Exception {
+        //take an error message as parameter
+        public ValidationException(String message) {
+            super(message);
+        }
+}
     
 }
