@@ -7,7 +7,7 @@ package ca1;
  */
 public class CA1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         MainMenu.showMenu();
     }
     
