@@ -11,7 +11,6 @@ public class MainMenu {
         
         boolean exit = false;
         
-        
         while(exit!=true){
             System.out.println("Welcome to this student application. Read carefully.");
             System.out.println("1. Read data from local file");
@@ -102,6 +101,6 @@ public class MainMenu {
     private static boolean askForAnotherStudent (Scanner sc){
         System.out.println("Would you like to add another student? (yes/no): ");
         String addAnother = sc.nextLine().toLowerCase();
-        return addAnother.equals("yes");
+        return addAnother.equals("yes"); // return true if user types in yes
     }
 }
