@@ -27,8 +27,8 @@ public class DataHandler {
     
     public static void readStudents() throws Exception{
         // Use try & catch to try to read the file
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("students.txt"));
+        try(BufferedReader reader = new BufferedReader(new FileReader("students.txt"))){
+            
             String line;
             
             String firstName = null;
