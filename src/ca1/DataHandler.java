@@ -15,7 +15,7 @@ public class DataHandler {
     private static final String TWO_NUMBERS = "^[2-9][0-9]";
     private static final String TWO_LETTERS = "[A-Za-z]{2}";
     private static final String LETTER_NUMBER = "[A-Za-z]?[0-9]+";
-    private static final String UP_TWO_HUNDRED = "([1-9][0-9]?|1[0-9]{2})";
+    private static final String UP_TWO_HUNDRED = "([0-9][0-9]?|1[0-9]{2})";
     private static final String ID_PATTERN = TWO_NUMBERS + TWO_LETTERS + LETTER_NUMBER + UP_TWO_HUNDRED + "$";
     
     // Regular expression for name validation
@@ -41,8 +41,8 @@ public class DataHandler {
                 // Skip Blank Lines
                 if (line.trim().isEmpty()) continue;
                 
-                // Log the current line for debugging
-                System.out.println("Processing line: " + line);
+//                 Log the current line for debugging
+//                System.out.println("Processing line: " + line);
 
                 try {
                     // Read first and Last names and validate
