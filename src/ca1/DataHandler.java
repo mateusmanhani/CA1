@@ -11,13 +11,6 @@ import java.io.IOException;
  * @author Mateus Manhani
  */
 public class DataHandler {
-    // Regular expression patterns for student ID validation
-    private static final String TWO_NUMBERS = "^[2-9][0-9]"; //two numbers higher then 20
-    private static final String TWO_LETTERS = "[A-Za-z]{2}"; // two letters
-    private static final String LETTER_NUMBER = "[A-Za-z]?[0-9]+";// a letter or a number
-    private static final String NUMBERS_ONLY = "\\d+"; // Numbers only
-    private static final String ID_PATTERN = TWO_NUMBERS + TWO_LETTERS + LETTER_NUMBER + NUMBERS_ONLY + "$";
-    
     // Regular expression for name validation
     private static final String NAME_PATTERN = "^[a-zA-Z]+ [a-zA-Z0-9]+$";
     
@@ -115,16 +108,41 @@ public class DataHandler {
     
     public static String verifyID(String line) throws ValidationException{
         String result = "invalid";
-        // Extract numeric part
-        String numericPart = line.replaceAll("[^0-9]", "");
-        // Validate student ID
-        if (line.matches(ID_PATTERN)){
-            // Check if the numeric part falls between 1 and 200
-            int numericValue = Integer.parseInt(numericPart);
-            if(numericValue >= 1 && numericValue <=200)
-            result = line;
-            else throw new ValidationException("Numeric part must be between1 and 200.");
-        } else throw new ValidationException("Invalid student ID.");
+
+        // Ensure minimum length requirement
+        if (line.length()< 6 ) throw new ValidationException("Invalid student ID format: Minimum length is 6 characters.");
+
+        // Extract components
+        String firstTwoNumbers = line.substring(0, 2);
+        String letters = line.substring(2, 4);
+        char fifthChar = line.charAt(4);
+        String numericPart = line.substring(5);
+
+        // Validate each component in student ID
+        try {
+            int firstTwoNumbersValue = Integer.parseInt(firstTwoNumbers);
+            int numericPartValue;
+
+            // Check if 5th character is a letter or digit
+            if (Character.isLetter(fifthChar)) { 
+                numericPartValue = Integer.parseInt(numericPart);
+            }
+            else if (Character.isDigit(fifthChar)) { 
+                numericPartValue = Integer.parseInt(fifthChar + numericPart);
+            }
+            else {
+                throw new ValidationException("Invalid student ID format: 5th character must be either a letter or digit.");
+            }
+            // Check if components meet criteria
+            if (firstTwoNumbersValue >= 20 && letters.matches("[A-Za-z]{2}") &&
+            numericPartValue >=1 && numericPartValue <= 200) {
+                result = line;
+            } else {
+                throw new ValidationException("Invalid student ID format or values out of range.");
+            }
+        }catch(NumberFormatException e){
+            throw new ValidationException("Invalid student ID format: Numeric parts must be valid integers.");            
+        }
         return result;
     }
     
