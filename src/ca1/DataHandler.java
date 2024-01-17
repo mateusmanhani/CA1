@@ -12,11 +12,11 @@ import java.io.IOException;
  */
 public class DataHandler {
     // Regular expression patterns for student ID validation
-    private static final String TWO_NUMBERS = "^[2-9][0-9]";
-    private static final String TWO_LETTERS = "[A-Za-z]{2}";
-    private static final String LETTER_NUMBER = "[A-Za-z]?[0-9]+";
-    private static final String UP_TWO_HUNDRED = "([0-9][0-9]?|1[0-9]{2})";
-    private static final String ID_PATTERN = TWO_NUMBERS + TWO_LETTERS + LETTER_NUMBER + UP_TWO_HUNDRED + "$";
+    private static final String TWO_NUMBERS = "^[2-9][0-9]"; //two numbers higher then 20
+    private static final String TWO_LETTERS = "[A-Za-z]{2}"; // two letters
+    private static final String LETTER_NUMBER = "[A-Za-z]?[0-9]+";// a letter or a number
+    private static final String NUMBERS_ONLY = "\\d+"; // Numbers only
+    private static final String ID_PATTERN = TWO_NUMBERS + TWO_LETTERS + LETTER_NUMBER + NUMBERS_ONLY + "$";
     
     // Regular expression for name validation
     private static final String NAME_PATTERN = "^[a-zA-Z]+ [a-zA-Z0-9]+$";
@@ -115,9 +115,15 @@ public class DataHandler {
     
     public static String verifyID(String line) throws ValidationException{
         String result = "invalid";
-         // Validate student ID
+        // Extract numeric part
+        String numericPart = line.replaceAll("[^0-9]", "");
+        // Validate student ID
         if (line.matches(ID_PATTERN)){
+            // Check if the numeric part falls between 1 and 200
+            int numericValue = Integer.parseInt(numericPart);
+            if(numericValue >= 1 && numericValue <=200)
             result = line;
+            else throw new ValidationException("Numeric part must be between1 and 200.");
         } else throw new ValidationException("Invalid student ID.");
         return result;
     }
