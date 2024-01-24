@@ -72,7 +72,8 @@ public class MainMenu {
                 String input = sc.nextLine();
                 return DataHandler.verifyName(input);               
             } catch(DataHandler.ValidationException e){
-                System.out.println("Invalid Input. Please try again.");
+                System.out.println("Error " + e.getMessage());
+                System.out.println("Please try again.");
             }
         }
     }
@@ -83,7 +84,8 @@ public class MainMenu {
                 System.out.println("Please enter the number of classes (1 through 8):");
                 return DataHandler.verifyClasses(sc.nextLine());
             } catch (DataHandler.ValidationException e) {
-                System.out.println("Invalid input. Please Try again.");
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("Please Try again.");
             }      
         }
     }
@@ -94,7 +96,8 @@ public class MainMenu {
                 System.out.println("Please enter the student ID: ");
                 return DataHandler.verifyID(sc.nextLine()); 
             } catch (DataHandler.ValidationException e) {
-                System.out.println("Invalid input. Please Try again.");
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("Please Try again.");
             }
         }
     }
