@@ -1,9 +1,18 @@
-20abc199 - manhani
+21ABC123 - Doe
 part time
 
-22abc200 - rowan
-light
+20GHI0123 - Williams
+full time
 
-22ab200 - santos
+21PQR012 - Taylor
+full time
+
+24HIJ0123 - Lee
 part time
+
+25QRS012 - Harris
+full time
+
+26ABC0123 - Moore
+full time
 
