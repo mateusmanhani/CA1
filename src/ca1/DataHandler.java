@@ -133,15 +133,8 @@ public class DataHandler {
             else {
                 throw new ValidationException("Invalid student ID format: 5th character must be either a letter or digit.");
             }
-            // // Check if components meet criteria
-            // if (firstTwoNumbersValue >= 20 && letters.matches("[A-Za-z]{2}") &&
-            // numericPartValue >=1 && numericPartValue <= 200) {
-            //     result = line;
-            // } else {
-            //     throw new ValidationException("Invalid student ID format or values out of range.");
-            // }
 
-            // Check conditions for each component
+            // Check conditions for each component and give helpful error messages
             if (firstTwoNumbersValue < 20) throw new ValidationException("First two numbers must be greater then 20");
 
             if (!letters.matches("[A-Za-z]{2}")) throw new ValidationException("Letters in the middle must be two or three alphabetical characters");
@@ -151,7 +144,7 @@ public class DataHandler {
             // if all conditions are met, set result
 
             result = line;
-            
+
         }catch(NumberFormatException e){
             throw new ValidationException("Invalid student ID format: Numeric parts must be valid integers.");            
         }
